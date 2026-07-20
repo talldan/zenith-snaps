@@ -1,8 +1,22 @@
 # Zenith Snaps Data
 
-Small helper script for collecting candidate PRs for Zenith Team Snaps.
+Small helper script and agent instructions for drafting Zenith Team Snaps.
+
+## Agent-Assisted Drafting
+
+Ask an agentic AI tool that can read files and run commands:
+
+```text
+Draft Zenith Snaps for 2026-07-06 to 2026-07-19 using this repo's process.
+```
+
+The agent should read `SNAPS_PROCESS.md` and `prompts/agent-runbook.md`, run the data script, inspect the generated JSON files, and return Markdown copy for a WordPress P2 post.
+
+If your AI tool cannot run commands or read local files, run the script manually and upload or paste the generated JSON files plus `prompts/agent-runbook.md`.
 
 ## Usage
+
+You can also run the data collection script directly:
 
 ```sh
 ./generate-snaps-data.sh 2026-07-06 2026-07-19
@@ -20,4 +34,4 @@ The date range is inclusive and uses GitHub search date syntax: `YYYY-MM-DD..YYY
 - Requires the GitHub CLI: `gh`.
 - Run `gh auth login` first if you are not already authenticated.
 - `wordpress-develop` PRs are closed when completed and committed separately via SVN, so review those results before including them in Snaps.
-- The script intentionally does not generate a draft post yet. Use the JSON files as raw source data for the Snaps draft.
+- The script intentionally does not generate a draft post itself. Agents should use the JSON files with `prompts/agent-runbook.md` to draft Markdown copy.
