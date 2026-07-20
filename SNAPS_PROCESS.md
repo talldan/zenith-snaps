@@ -12,7 +12,7 @@ Ask an agentic AI tool that can read files and run commands:
 Generate the Snaps using this repo's process.
 ```
 
-The agent should read `prompts/agent-runbook.md`, run `./generate-snaps-data.sh FROM TO`, inspect the generated JSON files, and return Markdown copy for a P2 post.
+The agent should read `prompts/agent-runbook.md`, run `./generate-snaps-data.sh FROM TO`, inspect the generated JSON files, and write Markdown copy for a P2 post to `snaps.md`.
 
 If no dates are provided, the agent should use the most recent completed Snaps cycle: Monday two weeks prior through the previous Sunday, inclusive.
 
@@ -39,13 +39,13 @@ Generated data is written to:
 - Aim for 2-4 sections with 1-2 panel-style highlights per section.
 - Include source PR links for each highlighted item.
 - Include screenshot or short demo suggestions for each panel.
-- Put uncertain items in a `Needs Review` section rather than guessing.
+- Leave uncertain items out of the post rather than adding review or omitted-work sections.
 
 ## Human Review
 
 Before publishing, the rota owner should:
 
-- Confirm `wordpress-develop` closed PRs were completed and committed.
+- Confirm any included `wordpress-develop` closed PRs were completed and committed.
 - Gather screenshots or short videos for the selected panels.
 - Add team updates that GitHub cannot know about, such as AFKs or focus changes.
 - Remove anything too small, noisy, uncertain, or not useful for a broader audience.

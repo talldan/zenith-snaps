@@ -10,7 +10,7 @@ Ask an agentic AI tool that can read files and run commands:
 Generate the Snaps using this repo's process.
 ```
 
-The agent should read `SNAPS_PROCESS.md` and `prompts/agent-runbook.md`, run the data script, inspect the generated JSON files, and return Markdown copy for a WordPress P2 post.
+The agent should read `SNAPS_PROCESS.md` and `prompts/agent-runbook.md`, run the data script, inspect the generated JSON files, and write Markdown copy for a WordPress P2 post to `snaps.md`.
 
 If your AI tool cannot run commands or read local files, run the script manually and upload or paste the generated JSON files plus `prompts/agent-runbook.md`.
 

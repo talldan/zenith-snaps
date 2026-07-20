@@ -60,9 +60,9 @@ If the command fails because `gh` is missing or unauthenticated, explain the blo
 - Group related PRs into coherent stories rather than listing PRs one by one.
 - Aim for 2-4 sections.
 - Aim for 1-2 panel-style highlights per section.
-- Treat `wordpress-develop` closed PRs as candidates that need verification unless the data clearly proves completion.
-- Put uncertain work in `Needs Review` instead of presenting it as final.
-- Include lower-priority or omitted items separately so the human can override your judgment.
+- Treat `wordpress-develop` closed PRs cautiously. Include them only when they make a strong highlight and phrase them without overclaiming Core landing details unless completion is clear from the data or human notes.
+- Leave uncertain, lower-priority, or omitted work out of `snaps.md`. The post is highlights-only.
+- Do not add `Needs Review`, `Omitted`, `Lower Priority`, or similar sections to `snaps.md`.
 
 ## Panel Selection
 
@@ -70,9 +70,8 @@ For each recommended panel, decide:
 
 - Panel title.
 - One short paragraph explaining what shipped and why it matters.
-- Source PR links.
+- Source PR links inline around the relevant words.
 - Suggested screenshot or demo.
-- Whether the panel is ready to publish or needs human verification.
 
 Good panel candidates are usually:
 
@@ -91,12 +90,28 @@ Poor panel candidates are usually:
 
 ## Final Output
 
-Return Markdown copy suitable for a WordPress P2 post. The human will paste it into the Zenith Snaps pattern and adjust styling/media manually.
+Write Markdown copy suitable for a WordPress P2 post to `snaps.md`. The human will paste it into the Zenith Snaps pattern and adjust styling/media manually.
+
+After writing the file, respond with a brief summary and the path to `snaps.md`. Do not paste the full post back into chat unless the human asks.
+
+Use human-readable dates in the title. Prefer the form `July 6th to July 19th`, not `2026-07-06 to 2026-07-19`. If the range crosses months, include both month names, such as `June 30th to July 13th`.
+
+Use inline links around the relevant claim text. Do not add trailing `Source:` or `Sources:` sentences. Good:
+
+```markdown
+Responsive styles now [include contrast checking for viewport and pseudo states](https://github.com/WordPress/gutenberg/pull/80223).
+```
+
+Avoid:
+
+```markdown
+Responsive styles now include contrast checking for viewport and pseudo states. Source: [#80223](https://github.com/WordPress/gutenberg/pull/80223).
+```
 
 Use this structure:
 
 ```markdown
-# Zenith Team Snaps: YYYY-MM-DD to YYYY-MM-DD
+# Zenith Team Snaps: Month DayOrdinal to Month DayOrdinal
 
 <!-- Suggested media checklist:
 - Section: panel title - screenshot/demo suggestion.
@@ -106,28 +121,22 @@ Use this structure:
 
 ### Panel Title
 
-Short, impact-focused copy with [source PR links](https://github.com/...).
+Short, impact-focused copy with [inline PR links around the relevant text](https://github.com/...).
 
 ### Panel Title
 
-Short, impact-focused copy with [source PR links](https://github.com/...).
-
-## Needs Review
-
-- Items that need human verification before publishing.
-
-## Omitted Or Lower Priority
-
-- Notable candidates you intentionally left out, with brief reasons.
+Short, impact-focused copy with [inline PR links around the relevant text](https://github.com/...).
 ```
 
-Keep the publishable post copy concise. Supporting review notes can be brief, but they should be separate from the main post copy.
+Keep the publishable post copy concise. `snaps.md` should contain only the post draft, not review notes or omitted-work commentary.
 
 ## Final Checks
 
 Before returning the draft, verify:
 
 - Each highlighted item has a PR link.
+- Links are inline around the text they support, with no trailing `Sources:` sentences.
 - The post does not try to include every PR.
-- `wordpress-develop` closed PRs are marked for verification when needed.
+- There are no `Needs Review`, `Omitted`, or `Lower Priority` sections.
+- The title uses human-readable dates.
 - Suggested media is concrete enough for the human to capture.
