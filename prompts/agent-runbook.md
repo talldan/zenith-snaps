@@ -64,6 +64,31 @@ If the command fails because `gh` is missing or unauthenticated, explain the blo
 - Leave uncertain, lower-priority, or omitted work out of `snaps.md`. The post is highlights-only.
 - Do not add `Needs Review`, `Omitted`, `Lower Priority`, or similar sections to `snaps.md`.
 
+## Audience And Tone
+
+Write for an intelligent internal audience at a tech company. Readers may include engineers, designers, support, marketing, product, and leadership.
+
+The tone should be product-facing and clear, not beginner-friendly or overly simplified. The post should help readers quickly understand what users can now see, do, or rely on.
+
+Style goals:
+
+- User-facing benefits.
+- Clear, product-facing language for an internal tech-company audience.
+- Concise wording.
+- What changed in the editor experience.
+- Why the change matters.
+- Terms such as `users`, `site owners`, `designers`, `theme authors`, or `folks` when they accurately describe the audience.
+
+Rewrite guidance:
+
+- Implementation details unless they help explain the benefit.
+- Overly technical wording when a product-facing explanation is clearer.
+- Overly simplified wording that sounds patronizing or vague.
+- Defaulting to `people` as a generic substitute for more accurate terms.
+- Package, API, data model, or internal architecture terminology unless it is relevant to the highlight.
+
+When technical terms are useful, keep them, but connect them to the user-facing improvement. Do not remove user-facing WordPress/editor terms such as `Global Styles`, `Media inserter`, `responsive styles`, `block styles`, or `theme` when they describe the feature clearly.
+
 ## Panel Selection
 
 For each recommended panel, decide:
@@ -96,16 +121,10 @@ After writing the file, respond with a brief summary and the path to `snaps.md`.
 
 Use human-readable dates in the title. Prefer the form `July 6th to July 19th`, not `2026-07-06 to 2026-07-19`. If the range crosses months, include both month names, such as `June 30th to July 13th`.
 
-Use inline links around the relevant claim text. Do not add trailing `Source:` or `Sources:` sentences. Good:
+Use inline links around the relevant claim text. Do not add trailing `Source:` or `Sources:` sentences.
 
 ```markdown
 Responsive styles now [include contrast checking for viewport and pseudo states](https://github.com/WordPress/gutenberg/pull/80223).
-```
-
-Avoid:
-
-```markdown
-Responsive styles now include contrast checking for viewport and pseudo states. Source: [#80223](https://github.com/WordPress/gutenberg/pull/80223).
 ```
 
 Use this structure:
@@ -139,4 +158,7 @@ Before returning the draft, verify:
 - The post does not try to include every PR.
 - There are no `Needs Review`, `Omitted`, or `Lower Priority` sections.
 - The title uses human-readable dates.
+- A non-engineering teammate can understand the user-facing value of each panel.
+- Each paragraph explains the user-facing improvement before any technical detail.
+- Technical terms are omitted or briefly grounded in user impact.
 - Suggested media is concrete enough for the human to capture.
