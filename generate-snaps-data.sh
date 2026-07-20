@@ -20,6 +20,7 @@ fi
 from="$1"
 to="$2"
 range="$from..$to"
+data_dir="data"
 
 author_query=(
 	author:tellthemachines
@@ -35,6 +36,9 @@ author_query=(
 
 json_fields='title,url,author,closedAt,labels,number,repository,state,body'
 
+mkdir -p "$data_dir"
+rm -f "$data_dir"/*.json
+
 printf 'Fetching merged Gutenberg PRs for %s...\n' "$range" >&2
 gh search prs \
 	--repo WordPress/gutenberg \
@@ -43,7 +47,7 @@ gh search prs \
 	--json "$json_fields" \
 	--limit 1000 \
 	"${author_query[@]}" \
-	> gutenberg_merged.json
+	> "$data_dir/gutenberg_merged.json"
 
 printf 'Fetching closed wordpress-develop PRs for %s...\n' "$range" >&2
 gh search prs \
@@ -52,10 +56,10 @@ gh search prs \
 	--json "$json_fields" \
 	--limit 1000 \
 	"${author_query[@]}" \
-	> wordpress-develop_closed.json
+	> "$data_dir/wordpress-develop_closed.json"
 
 cat >&2 <<'DONE'
 Wrote:
-  gutenberg_merged.json
-  wordpress-develop_closed.json
+  data/gutenberg_merged.json
+  data/wordpress-develop_closed.json
 DONE

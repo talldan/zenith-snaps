@@ -7,7 +7,7 @@ Small helper script and agent instructions for drafting Zenith Team Snaps.
 Ask an agentic AI tool that can read files and run commands:
 
 ```text
-Draft Zenith Snaps for 2026-07-06 to 2026-07-19 using this repo's process.
+Generate the Snaps using this repo's process.
 ```
 
 The agent should read `SNAPS_PROCESS.md` and `prompts/agent-runbook.md`, run the data script, inspect the generated JSON files, and return Markdown copy for a WordPress P2 post.
@@ -22,12 +22,13 @@ You can also run the data collection script directly:
 ./generate-snaps-data.sh 2026-07-06 2026-07-19
 ```
 
-The script writes two files in the current directory:
+The script writes two files in the `data` directory:
 
-- `gutenberg_merged.json`: merged PRs in `WordPress/gutenberg` authored by Zenith team members during the date range.
-- `wordpress-develop_closed.json`: closed PRs in `WordPress/wordpress-develop` authored by Zenith team members during the date range.
+- `data/gutenberg_merged.json`: merged PRs in `WordPress/gutenberg` authored by Zenith team members during the date range.
+- `data/wordpress-develop_closed.json`: closed PRs in `WordPress/wordpress-develop` authored by Zenith team members during the date range.
 
 The date range is inclusive and uses GitHub search date syntax: `YYYY-MM-DD..YYYY-MM-DD`.
+Each run removes the previous generated JSON files before writing fresh data.
 
 ## Notes
 

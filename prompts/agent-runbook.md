@@ -6,13 +6,28 @@ Your default workflow is agent-driven. Do not ask the human to paste JSON files 
 
 ## Inputs
 
-The human should provide or imply a date range, usually in this form:
+The human may provide an explicit date range:
 
 ```text
 Draft Zenith Snaps for YYYY-MM-DD to YYYY-MM-DD using this repo's process.
 ```
 
-If the date range is missing or ambiguous, ask one short clarification question before continuing.
+The human may also use a vague request such as:
+
+```text
+Generate the Snaps using this repo's process.
+```
+
+If explicit dates are provided, use them.
+
+If the human says `last two weeks`, `generate the snaps`, or gives no date range, infer the most recent completed Snaps cycle. The default cycle is Monday two weeks prior through the previous Sunday, inclusive. In practice, find the most recent completed Sunday, then use the Monday 13 days before that Sunday as the start date.
+
+Examples:
+
+- If today is Monday 2026-07-20, the most recent completed Sunday is `2026-07-19`, so use `2026-07-06` through `2026-07-19`.
+- If today is Wednesday 2026-07-22, the most recent completed Sunday is still `2026-07-19`, so use `2026-07-06` through `2026-07-19`.
+
+State the inferred date range before running the script. Do not ask for confirmation unless the request conflicts with the default cycle or the date range is genuinely ambiguous.
 
 ## Files To Read
 
@@ -31,8 +46,8 @@ Run the data script yourself:
 
 Then read:
 
-- `gutenberg_merged.json`
-- `wordpress-develop_closed.json`
+- `data/gutenberg_merged.json`
+- `data/wordpress-develop_closed.json`
 
 If the command fails because `gh` is missing or unauthenticated, explain the blocker and the exact command the human needs to run, such as `gh auth login`.
 

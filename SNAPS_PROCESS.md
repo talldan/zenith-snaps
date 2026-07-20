@@ -9,10 +9,12 @@ The process is date-based rather than board-based. The rota owner does not need 
 Ask an agentic AI tool that can read files and run commands:
 
 ```text
-Draft Zenith Snaps for 2026-07-06 to 2026-07-19 using this repo's process.
+Generate the Snaps using this repo's process.
 ```
 
 The agent should read `prompts/agent-runbook.md`, run `./generate-snaps-data.sh FROM TO`, inspect the generated JSON files, and return Markdown copy for a P2 post.
+
+If no dates are provided, the agent should use the most recent completed Snaps cycle: Monday two weeks prior through the previous Sunday, inclusive.
 
 ## Source Data
 
@@ -20,6 +22,11 @@ The data collection script gathers candidate work from GitHub:
 
 - `WordPress/gutenberg`: merged PRs authored by Zenith team members during the date range.
 - `WordPress/wordpress-develop`: closed PRs authored by Zenith team members during the date range.
+
+Generated data is written to:
+
+- `data/gutenberg_merged.json`
+- `data/wordpress-develop_closed.json`
 
 `wordpress-develop` PRs are closed when completed and committed separately via SVN, so those items need human verification before publishing.
 
