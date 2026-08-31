@@ -22,15 +22,15 @@ to="$2"
 range="$from..$to"
 data_dir="data"
 
+# Repeated `author:` qualifiers are ORed together. They must not be joined with
+# an explicit `OR`, which GitHub rejects because logical operators apply only to
+# text, not to qualifiers. Note that repeating gh's `--author` flag instead would
+# silently keep only the last author.
 author_query=(
 	author:tellthemachines
-	OR
 	author:talldan
-	OR
 	author:andrewserong
-	OR
 	author:ramonjd
-	OR
 	author:aaronrobertshaw
 )
 
@@ -49,13 +49,19 @@ gh search prs \
 	"${author_query[@]}" \
 	> "$data_dir/gutenberg_merged.json"
 
+# GitHub's `closed:` qualifier misses PRs it has itself indexed with a closed_at
+# inside the range, so search on `updated` (always >= closedAt) and narrow to the
+# real closed date locally. The filter runs through gh's built-in jq, so this
+# needs no external jq.
 printf 'Fetching closed wordpress-develop PRs for %s...\n' "$range" >&2
 gh search prs \
 	--repo WordPress/wordpress-develop \
-	--closed "$range" \
+	--state closed \
+	--updated ">=$from" \
 	--json "$json_fields" \
 	--limit 1000 \
 	"${author_query[@]}" \
+	--jq "map(select(.closedAt >= \"$from\" and .closedAt <= \"${to}T23:59:59Z\"))" \
 	> "$data_dir/wordpress-develop_closed.json"
 
 cat >&2 <<'DONE'
