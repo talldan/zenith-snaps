@@ -22,15 +22,17 @@ to="$2"
 range="$from..$to"
 data_dir="data"
 
-# Repeated `author:` qualifiers are ORed together. They must not be joined with
-# an explicit `OR`, which GitHub rejects because logical operators apply only to
-# text, not to qualifiers. Note that repeating gh's `--author` flag instead would
-# silently keep only the last author.
+# GitHub CLI advanced issue search requires explicit OR arguments between author
+# qualifiers. Multiple qualifiers without OR are ANDed together.
 author_query=(
 	author:tellthemachines
+	OR
 	author:talldan
+	OR
 	author:andrewserong
+	OR
 	author:ramonjd
+	OR
 	author:aaronrobertshaw
 )
 
