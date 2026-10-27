@@ -17,6 +17,13 @@ if ! command -v gh >/dev/null 2>&1; then
 	exit 1
 fi
 
+min_gh_version="2.103.0"
+gh_version="$(gh --version | sed -E -n '1s/^gh version ([0-9]+\.[0-9]+(\.[0-9]+)?).*/\1/p')"
+if [ -z "$gh_version" ] || ! printf '%s\n%s\n' "$min_gh_version" "$gh_version" | sort -V -C 2>/dev/null; then
+	printf 'Error: gh %s or newer is required (found %s). Please upgrade gh (e.g. `brew upgrade gh`).\n' "$min_gh_version" "${gh_version:-unknown}" >&2
+	exit 1
+fi
+
 from="$1"
 to="$2"
 range="$from..$to"
