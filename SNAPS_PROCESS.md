@@ -55,7 +55,7 @@ Before publishing, the rota owner should:
 ## Publishing
 
 - Create a new post on `zenithp2.wordpress.com`.
-- Paste `snaps.html` into the post's code editor, then switch to the visual editor.
+- On macOS, run `pbcopy < snaps.html` from the repository root and paste directly into the empty visual editor of a new post. See `patterns/README.md` for Linux clipboard commands.
 - Move the initial H1 text to the separate post-title field and remove the H1 block from the body.
 - Verify all blocks are valid and editable, replace missing media, and make visual/layout adjustments manually. The styles use the destination theme's presets.
 - Tag the post with `#snaps`, `#zenithsnaps`, and `+snapsp2`.
