@@ -4,7 +4,7 @@
  * Slug: zenith/post
  * Description: Required entry point; renders title, intro, sections, attribution, tags.
  * Parameters: $title (plain text), $intro (plain text), $content (callback rendering sections).
- * Guidance: Always use once. The H1 is moved to the WordPress title field when publishing.
+ * Guidance: Always use once. Paste into an empty post's title field to populate the title and body automatically.
  * Example: pattern( 'post', [ 'title' => 'Zenith Team Snaps: ...', 'intro' => 'This cycle...', 'content' => function () { ... } ] );
  */
 namespace Snaps;

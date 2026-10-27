@@ -120,7 +120,7 @@ Write a PHP composition to `snaps.php`, requiring `patterns/render.php` and usin
 
 After rendering and checking the output, respond with a brief summary and paths to `snaps.php` and `snaps.html`. State that destination-editor validation remains for the human. Do not paste the full post back into chat unless asked.
 
-Always finish with copy/paste instructions. On macOS, tell the human to run `pbcopy < snaps.html` from the repository root and paste directly into the **empty visual editor** of a new WordPress post. Remind them to move the initial H1 into the separate post-title field and remove that H1 block. Do not copy to the clipboard automatically unless asked. If the human uses Linux, give the appropriate command for their environment: `wl-copy < snaps.html` on Wayland or `xclip -selection clipboard < snaps.html` on X11, when that utility is installed; otherwise suggest opening the file and copying its contents manually.
+Always finish with copy/paste instructions. On macOS, tell the human to run `pbcopy < snaps.html` from the repository root and paste directly into the **title field of a new, empty WordPress post** in the visual editor. WordPress puts the initial H1 text into the post title and the remaining blocks into the body automatically. Do not copy to the clipboard automatically unless asked. If the human uses Linux, give the appropriate command for their environment: `wl-copy < snaps.html` on Wayland or `xclip -selection clipboard < snaps.html` on X11, when that utility is installed; otherwise suggest opening the file and copying its contents manually.
 
 Use human-readable dates in the title. Prefer the form `July 6th to July 19th`, not `2026-07-06 to 2026-07-19`. If the range crosses months, include both month names, such as `June 30th to July 13th`.
 
@@ -153,4 +153,4 @@ Before returning the draft, verify:
 - The post uses the main pattern, with one H1, an intro, sections containing exactly one or two columns, and the standard footer.
 - Block opening/closing comments match, JSON attributes are valid, and HTML nesting is intact. Pattern wrapper styles are preserved.
 - Media URLs come from inspected sources; missing media uses empty Image blocks with capture suggestions. No example upload URLs remain.
-- The human can paste the output directly into an empty visual editor, move the H1 to the title field, and review/edit native blocks. Do not claim destination-editor validation without performing it.
+- The human can paste the output into an empty post's title field to populate the title and body automatically, then review/edit native blocks. Do not claim destination-editor validation without performing it.

@@ -74,8 +74,8 @@ When a suitable image is unavailable, omit `src` and supply `suggestion`. This p
 
 1. Review `snaps.php` for copy, sources, media provenance, and layout choices. Regenerate after edits.
 2. Verify block delimiters and HTML nesting; compare wrappers with the patterns. Check no PHP diagnostics, instructional tokens, or sample URLs leaked into output.
-3. From the repository root on macOS, run `pbcopy < snaps.html` to copy the markup. Paste directly into the **empty visual editor** of a new P2 post. On Linux, use `wl-copy < snaps.html` on Wayland or `xclip -selection clipboard < snaps.html` on X11 if installed, or open the file and copy its contents manually. The generated document is a block fragment, not a standalone themed HTML page.
-4. Move the initial H1 text into WordPress's separate post-title field and remove that H1 block.
+3. From the repository root on macOS, run `pbcopy < snaps.html` to copy the markup. On Linux, use `wl-copy < snaps.html` on Wayland or `xclip -selection clipboard < snaps.html` on X11 if installed, or open the file and copy its contents manually. The generated document is a block fragment, not a standalone themed HTML page.
+4. Paste into the **title field of a new, empty P2 post** in the visual editor. WordPress puts the initial H1 text into the post title and the remaining blocks into the body automatically.
 5. Confirm there are no invalid-block warnings and that sections, paragraphs, lists, and media are individually editable. Check the theme's preset colors, spacing, gradient, and shadow match the supplied example.
 6. Replace empty images using the suggestions in `snaps.php` and review external media. Proofread and follow `SNAPS_PROCESS.md` before publishing.
 

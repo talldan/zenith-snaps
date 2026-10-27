@@ -55,8 +55,7 @@ Before publishing, the rota owner should:
 ## Publishing
 
 - Create a new post on `zenithp2.wordpress.com`.
-- On macOS, run `pbcopy < snaps.html` from the repository root and paste directly into the empty visual editor of a new post. See `patterns/README.md` for Linux clipboard commands.
-- Move the initial H1 text to the separate post-title field and remove the H1 block from the body.
+- On macOS, run `pbcopy < snaps.html` from the repository root and paste directly into the title field of a new, empty post in the visual editor. WordPress puts the initial H1 text into the post title and the remaining blocks into the body automatically. See `patterns/README.md` for Linux clipboard commands.
 - Verify all blocks are valid and editable, replace missing media, and make visual/layout adjustments manually. The styles use the destination theme's presets.
 - Tag the post with `#snaps`, `#zenithsnaps`, and `+snapsp2`.
 - Mention whoever is running the division's Thursday Updates.
