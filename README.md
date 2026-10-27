@@ -10,7 +10,7 @@ Ask an agentic AI tool that can read files and run commands:
 Generate the Snaps using this repo's process.
 ```
 
-The agent should read `SNAPS_PROCESS.md` and `prompts/agent-runbook.md`, run the data script, inspect the generated JSON files, and write Markdown copy for a WordPress P2 post to `snaps.md`.
+The agent should read `SNAPS_PROCESS.md` and `prompts/agent-runbook.md`, run the data script, inspect the generated JSON files, and compose `snaps.php` using the documented [PHP patterns](patterns/README.md). Running the composition produces `snaps.html`, editable block markup ready to paste into the WordPress code editor.
 
 If your AI tool cannot run commands or read local files, run the script manually and upload or paste the generated JSON files plus `prompts/agent-runbook.md`.
 
@@ -32,7 +32,8 @@ Each run removes the previous generated JSON files before writing fresh data.
 
 ## Notes
 
-- Requires the GitHub CLI: `gh`.
+- Requires GitHub CLI 2.103.0+ and PHP 8.0+ CLI for composing posts. No WordPress installation or Composer dependencies are needed locally.
 - Run `gh auth login` first if you are not already authenticated.
 - `wordpress-develop` PRs are closed when completed and committed separately via SVN, so review those results before including them in Snaps.
-- The script intentionally does not generate a draft post itself. Agents should use the JSON files with `prompts/agent-runbook.md` to draft Markdown copy.
+- The data script collects candidates; agents curate the JSON using `prompts/agent-runbook.md` and compose the post with `patterns/`. Generated drafts are ignored by Git.
+- The post pattern includes an H1 title. Move that text to WordPress's separate title field and remove the H1 from the body before publishing.

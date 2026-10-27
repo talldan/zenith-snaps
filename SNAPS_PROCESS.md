@@ -12,7 +12,7 @@ Ask an agentic AI tool that can read files and run commands:
 Generate the Snaps using this repo's process.
 ```
 
-The agent should read `prompts/agent-runbook.md`, run `./generate-snaps-data.sh FROM TO`, inspect the generated JSON files, and write Markdown copy for a P2 post to `snaps.md`.
+The agent should read `prompts/agent-runbook.md`, run `./generate-snaps-data.sh FROM TO`, inspect the generated JSON files, and compose `snaps.php` using the PHP patterns. Executing it produces `snaps.html`, a P2 draft made of editable native blocks. See `patterns/README.md` for composition and rendering instructions.
 
 If no dates are provided, the agent should use the most recent completed Snaps cycle: Monday two weeks prior through the previous Sunday, inclusive.
 
@@ -39,6 +39,7 @@ Generated data is written to:
 - Aim for 2-4 sections with 1-2 panel-style highlights per section.
 - Include source PR links for each highlighted item.
 - Include screenshot or short demo suggestions for each panel.
+- Prefer relevant screenshots from PR descriptions when their context and URLs are clear. Otherwise use an empty Image block and retain a capture suggestion in the composition.
 - Leave uncertain items out of the post rather than adding review or omitted-work sections.
 
 ## Human Review
@@ -54,8 +55,9 @@ Before publishing, the rota owner should:
 ## Publishing
 
 - Create a new post on `zenithp2.wordpress.com`.
-- Use the existing Zenith Snaps pattern if helpful.
-- Paste the AI-generated Markdown copy into the post and make visual/layout adjustments manually.
+- Paste `snaps.html` into the post's code editor, then switch to the visual editor.
+- Move the initial H1 text to the separate post-title field and remove the H1 block from the body.
+- Verify all blocks are valid and editable, replace missing media, and make visual/layout adjustments manually. The styles use the destination theme's presets.
 - Tag the post with `#snaps`, `#zenithsnaps`, and `+snapsp2`.
 - Mention whoever is running the division's Thursday Updates.
 

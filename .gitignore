@@ -1,3 +1,6 @@
 data/*.json
 snaps.md
+/snaps.php
+/snaps.html
+/snaps.html.tmp
 output.md

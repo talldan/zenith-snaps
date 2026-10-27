@@ -35,6 +35,7 @@ Read these files before drafting:
 
 - `SNAPS_PROCESS.md`
 - `generate-snaps-data.sh`
+- `patterns/README.md` and the PHP headers of the patterns you select.
 
 ## Collect Data
 
@@ -61,8 +62,8 @@ If the command fails because `gh` is missing or unauthenticated, explain the blo
 - Aim for 2-4 sections.
 - Aim for 1-2 panel-style highlights per section.
 - Treat `wordpress-develop` closed PRs cautiously. Include them only when they make a strong highlight and phrase them without overclaiming Core landing details unless completion is clear from the data or human notes.
-- Leave uncertain, lower-priority, or omitted work out of `snaps.md`. The post is highlights-only.
-- Do not add `Needs Review`, `Omitted`, `Lower Priority`, or similar sections to `snaps.md`.
+- Leave uncertain, lower-priority, or omitted work out of the draft. The post is highlights-only.
+- Do not add `Needs Review`, `Omitted`, `Lower Priority`, or similar sections.
 
 ## Audience And Tone
 
@@ -115,39 +116,23 @@ Poor panel candidates are usually:
 
 ## Final Output
 
-Write Markdown copy suitable for a WordPress P2 post to `snaps.md`. The human will paste it into the Zenith Snaps pattern and adjust styling/media manually.
+Write a PHP composition to `snaps.php`, requiring `patterns/render.php` and using `Snaps\pattern()`. Generate `snaps.html` with the commands in `patterns/README.md`. These replace the previous Markdown deliverable; do not overwrite existing `snaps.md` unless explicitly requested.
 
-After writing the file, respond with a brief summary and the path to `snaps.md`. Do not paste the full post back into chat unless the human asks.
+After rendering and checking the output, respond with a brief summary and paths to `snaps.php` and `snaps.html`. State that destination-editor validation remains for the human. Do not paste the full post back into chat unless asked.
 
 Use human-readable dates in the title. Prefer the form `July 6th to July 19th`, not `2026-07-06 to 2026-07-19`. If the range crosses months, include both month names, such as `June 30th to July 13th`.
 
 Use inline links around the relevant claim text. Do not add trailing `Source:` or `Sources:` sentences.
 
-```markdown
-Responsive styles now [include contrast checking for viewport and pseudo states](https://github.com/WordPress/gutenberg/pull/80223).
+```html
+Responsive styles now <a href="https://github.com/WordPress/gutenberg/pull/80223">include contrast checking for viewport and pseudo states</a>.
 ```
 
-Use this structure:
+Use `post` exactly once for the H1 title, intro, composed sections, and standard footer. Choose `section-single` for one coherent story or `section-two` for two distinct sets in the same project/area. The two columns can hold equal features, major/minor features, or a headline beside several smaller updates. Columns may contain multiple headings and any sequence of paragraphs, images, galleries, lists, and videos. Read each pattern's parameter contract; preserve styles and nesting in the pattern files rather than reproducing them in the composition.
 
-```markdown
-# Zenith Team Snaps: Month DayOrdinal to Month DayOrdinal
+Inspect PR bodies for relevant screenshots and recordings. Follow the selection, URL checking, and provenance guidance in `patterns/README.md`. Use only supplied or source-supported media; never guess URLs, attachment IDs, or VideoPress attributes. If no suitable media is available, use an empty `image` with a concrete `suggestion`. Capture instructions and provenance remain in the PHP composition, never in rendered HTML comments or publishable copy.
 
-<!-- Suggested media checklist:
-- Section: panel title - screenshot/demo suggestion.
--->
-
-## Section Title
-
-### Panel Title
-
-Short, impact-focused copy with [inline PR links around the relevant text](https://github.com/...).
-
-### Panel Title
-
-Short, impact-focused copy with [inline PR links around the relevant text](https://github.com/...).
-```
-
-Keep the publishable post copy concise. `snaps.md` should contain only the post draft, not review notes or omitted-work commentary.
+Keep the publishable post copy concise. Rendered HTML contains only the post draft, without guidance comments, review notes, or omitted-work commentary. Only WordPress block delimiters are emitted as HTML comments.
 
 ## Final Checks
 
@@ -162,3 +147,8 @@ Before returning the draft, verify:
 - Each paragraph explains the user-facing improvement before any technical detail.
 - Technical terms are omitted or briefly grounded in user impact.
 - Suggested media is concrete enough for the human to capture.
+- PHP lint and rendering succeed without warnings; output contains no PHP or Markdown formatting.
+- The post uses the main pattern, with one H1, an intro, sections containing exactly one or two columns, and the standard footer.
+- Block opening/closing comments match, JSON attributes are valid, and HTML nesting is intact. Pattern wrapper styles are preserved.
+- Media URLs come from inspected sources; missing media uses empty Image blocks with capture suggestions. No example upload URLs remain.
+- The human can paste the output into the code editor, move the H1 to the title field, and review/edit native blocks in the visual editor. Do not claim destination-editor validation without performing it.
